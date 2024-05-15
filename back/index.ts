@@ -1,35 +1,33 @@
+import  fibcheck from './fibchecker/fibcheck';
+
 const express = require('express');
 const app = express();
 const port = 3000;
 const cors = require('cors');
-// const Big = require('big.js');
+
 
 app.use(express.json());
 
 app.use(cors({
   origin: 'http://localhost:3001',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type'],
 }));
 
 app.options('*', cors());
 
-app.post(`/fib/:fibnumber`, (req: any, res: any) => {
+//postメソッドを用いた時の実装
+// app.post(`/fib/:fibnumber`, (req: any, res: any) => {
+//   const fibonachnumber = req.params.fibnumber;
+//   const result = fibcheck(fibonachnumber).toString();
+//   res.send({ "result": result });
+// });
+
+//getメソッドを用いた時の実装
+app.get(`/fib/:fibnumber`, (req: any, res: any) => {
   const fibonachnumber = req.params.fibnumber;
-
-  function fib(n: number, memo: { [key: number]: bigint } = {}): bigint {
-    if (n <= 1) {
-      return BigInt(n);
-    }
-    if (memo[n]) {
-      return memo[n];
-    }
-    memo[n] = fib(n - 1, memo) + (fib(n - 2, memo));
-    return memo[n];
-  }
-
-  const result = fib(fibonachnumber).toString();
-  res.send({ fib: result });
+  const result = fibcheck(fibonachnumber).toString();
+  res.send({ "result": result });
 });
 
 app.listen(port, () => {

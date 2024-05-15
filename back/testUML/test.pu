@@ -1,0 +1,16 @@
+@startuml 
+title サンプルフローチャート 
+
+start
+if (数値が入力されている) then (no)
+  :Errorメッセージを出力;
+  stop
+else (yes)
+    if (入力が1以上) then (no)
+        :Errorメッセージを出力;
+        stop
+    else (yes)
+        :入力に対応したフィボナッチ数列の値を出力;
+        stop
+    
+@enduml
