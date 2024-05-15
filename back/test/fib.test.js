@@ -1,0 +1,3 @@
+const testFibonachi = require('../index');
+
+
