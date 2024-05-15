@@ -23,7 +23,7 @@ export default function Home() {
 
   //GETメソッドを用いた時の実装
   const handlEvent: MouseEventHandler<HTMLButtonElement> = async (event) => {
-    const response = await fetch(`http://localhost:3000/fib/${fibonachnumber}`, {
+    const response = await fetch(`http://localhost:8000/fib/${fibonachnumber}`, {
       method: "GET",
       mode: 'cors',
     });
