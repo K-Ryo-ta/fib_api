@@ -4,6 +4,7 @@ import { MouseEventHandler, useEffect, useState } from "react";
 export default function Home() {
   const [fibonachnumber, setFibonachnumber] = useState<number | null>(null);
   const [result, setResult] = useState<number | null>();
+  const link = process.env.NEXT_PUBLIC_LINK || "http://localhost:8000/fib/";
 
   //POSTメソッドを用いた時の実装
   // const handlEvent: MouseEventHandler<HTMLButtonElement> = async (event) => {
@@ -23,7 +24,7 @@ export default function Home() {
 
   //GETメソッドを用いた時の実装
   const handlEvent: MouseEventHandler<HTMLButtonElement> = async (event) => {
-    const response = await fetch(`http://localhost:8000/fib/${fibonachnumber}`, {
+    const response = await fetch(`${link}${fibonachnumber}`, {
       method: "GET",
       mode: 'cors',
     });
