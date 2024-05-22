@@ -29,9 +29,16 @@ export default function Home() {
       mode: 'cors',
     });
 
-    const data = await response.json();
-    setResult(data.result);
-    console.log(data)
+    if (response.ok) {
+      const data = await response.json();
+      setResult(data.result);
+      console.log(data);
+    } else {
+      const errorData = await response.json();
+      console.error('Error:', errorData.error);
+      // エラーメッセージを表示するなどの処理を行う
+      alert(errorData.error); // 例: アラートでエラーメッセージを表示
+    }
   };
 
   const handleFibonach = (value: string | null) => {
@@ -49,7 +56,6 @@ export default function Home() {
       <h1 className="font-bold text-4xl mb-10 text-white">フィボナッチ数列チェッカー</h1>
       <div className="flex mb-10">
         <input
-          type="number"
           onChange={(e) => handleFibonach(e.target.value)}
           className="px-4 py-2 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
           placeholder="Enter a number"
