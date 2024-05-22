@@ -1,5 +1,5 @@
 @startuml 
-title サンプルフローチャート 
+title ユニットテストフローチャート 
 
 start
 if (数値が入力されている) then (no)
